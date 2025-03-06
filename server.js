@@ -1,8 +1,6 @@
 const { createServer } = require('node:http');
-require('dotenv').config(); 
 
-const hostname = '127.0.0.1';
-const port = process.env.port; //azure provided hopefully 
+const port = process.env.PORT || 3000; // Use Azure's PORT or default to 3000
 
 const server = createServer((req, res) => {
   res.statusCode = 200;
@@ -10,6 +8,6 @@ const server = createServer((req, res) => {
   res.end('Hello World');
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+server.listen(port, '0.0.0.0', () => {
+  console.log(`Server running on port ${port}`);
 });
