@@ -1,0 +1,279 @@
+a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+body {
+    background-color: #c1e8c9;
+    color: black;
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.centered-title {
+    text-align: center;
+}
+
+.header-text {
+	padding: 1px;
+  	text-align: center;
+  	background: #73C773;
+	color: #fafafa;
+    display: block;
+}
+.header-solid {
+    padding: 7px;
+    text-align: center;
+    background: #87C57C;
+    color: #fafafa;
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.index-container {
+    width: 80%;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+    display: grid;
+    justify-content: space-evenly;
+}
+
+.index-container2 {
+    width: 80%;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-text {
+    max-height: 40px;
+}
+
+
+.navbar {
+    background-color: #73C773;
+    text-align: center;
+    justify-content: space-evenly;
+    display: flex;
+    /* padding-top: 15px; */
+    padding-bottom: 12px;
+}
+
+.navbar a {
+	color: #fafafa;
+    font-size: 20px;
+}
+
+.navbar a:hover {
+    color: #d27763;
+}
+
+.price-text {
+    text-align: left;
+}
+
+.product-list {
+    list-style-type: none;
+}
+
+.product-list li:nth-child(even) {
+    background-color:#c7c9ca; 
+    color: #35373b;
+    margin: 10px 0;
+    padding: 15px;
+}
+
+.product-list li:nth-child(even):hover {
+    background-color:#6c6d6d; 
+    color: #fff;
+    margin: 10px 0;
+    padding: 15px;
+}
+
+.product-list li:nth-child(odd) {
+    background-color: #9a9c9e;
+    color: #35373b;
+    margin: 10px 0;
+    padding: 15px;
+}
+
+.product-list li:nth-child(odd):hover {
+    background-color:#6c6d6d; 
+    color: #fff;
+    margin: 10px 0;
+    padding: 15px;
+}
+
+.product-list-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.product-text {
+    text-align: right;
+}
+
+
+.column {
+    /* width: 25%; */
+    padding: 15px; 
+    margin-top: 3%;
+    /* height: 350px; */
+    background-color: #c7c9ca;
+    display: block;
+    text-align: center;
+    border-radius: 25px;
+}
+.column.left {
+    float: left;
+    margin-left: 15%;
+}
+.column.right {
+    float: right;
+    margin-right: 15%;
+}
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.button {
+	background-color: #828488; 
+	color: #fafafa;
+	display: flex;
+	border-radius: 25px;
+	text-align: center;
+	border: none;
+    font-size: 15px;
+    padding: 3px 15px;
+	cursor: pointer;
+    width: 10;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 1%;
+}
+
+.button:hover{
+	background-color: #5d5f62;
+}
+
+.header{
+    background-image: url('/images/Leeroy’s Plant Buddy (5).png');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 100%;
+    height: 217px;
+    background-size: cover;
+    display: inline-block;
+}
+
+.featured-product {
+    background-image: url('../images/plant test.png');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 350px;
+    height: 350px;
+    background-size: cover;
+    display: inline-block;
+}
+
+.featured-product-small {
+    background-image: url('/images/leeroy-watering-landscape.jpg');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    display: inline-block;
+}
+
+.point-left-transparent {
+    background-image: url('../images/point-left-transparent.png');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 225px;
+    height: 350px;
+    background-size: cover;
+    display: inline-block;
+    background-color: transparent;
+}
+.form-format {
+    text-align: center;
+    font-size: 25px;
+    background-color: #73C773;
+    color: #fafafa;
+    border-radius: 85px;
+    display: flex;
+    flex-direction:column;
+    background-size: contain;
+    align-items: center;
+    width: 50%;
+}
+
+.submit-button {
+    text-align: center;
+    font-size: 25px;
+    background-color: gray;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    display: inline-block;
+}
+
+.text-field {
+    background-color: white;
+    font-size: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    display: inline-block;
+}
+
+.landing-title{
+    font-size: 48px;
+    /*float: right;*/
+    margin: 50px 50px 50px 0;
+    text-align: center;
+    width: 500px;
+} 
+
+.landing-text{
+    font-size: 24px;
+    /*float: right;*/
+    margin: 0 50px 0 0;
+    text-align: center;
+    width: 500px;
+    word-wrap: break-word;
+}
+
+.landing-flavor-text{
+    font-size: 24px;
+    /*float: right;*/
+    margin: 0 50px 0 50px;
+    text-align: center;
+    width: 250px;
+    word-wrap: break-word;
+}
+
+.landing-flavor-text2{
+    font-size: 24px;
+    /*float: right;*/
+    margin: 0 50px 0 65px;
+    text-align: center;
+    width: 250px;
+    word-wrap: break-word;
+}

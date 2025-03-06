@@ -1,0 +1,63 @@
+<!-- products/index.ejs -->
+<%- include('partials/head', { title: 'Data' }) %>
+
+<div class="index-container2">
+    <span>
+        <div class="landing-title">Data</div>
+        <div class="landing-text">Data</div>
+    </span>
+</div>
+
+<!--
+        <script>
+            function addToCart(product_id, product_name, product_price) {
+                fetch('/addToCart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        product_id, 
+                        product_name, 
+                        product_price, 
+                    }),
+                })
+                .then(response => {
+                    if(!response.ok) {
+                        throw new Error(`HTTP Error! Status: ${response.status}`)
+                    }
+                })
+            }
+
+            function handleCheckout() {
+                console.log("handle checkout")
+                fetch('/checkout')
+                .then(response => {
+                    if(!response.ok) {
+                        console.error("oh no");
+                    } else {
+                        console.log('rerouting');
+                        window.location.href = `http://localhost:3000/checkout`;
+                    }
+                    console.log(response.text());
+                })
+            }
+        </script>
+
+  
+
+        <div class="container" style="margin-top: 3%;">
+            <ul class="product-list">
+                <% products.forEach(product => { %>
+                    <% if(product.display) { %>
+                        <li class="product-list-item">
+                            <span><img class="image-text" src="<%=product.product_image%>" alt="<%= product.product_name%> Image"></span>
+                            <span class="product-text"><%= product.product_name %></span>
+                            <span class="price-text">$<%= product.product_price %></span>
+                            <span><button class="add-to-cart" onclick="addToCart('<%=product.product_id%>', '<%=product.product_name%>', '<%=product.product_price%>')"></button></span>
+                        </li>
+                    <% } %>
+                <% }); %>
+            </ul>
+        </div>
+-->

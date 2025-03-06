@@ -4,11 +4,21 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "test": "jest --detectOpenHandles",
     "start": "node server.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
     "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+
   }
 }

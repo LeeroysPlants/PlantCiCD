@@ -1,0 +1,40 @@
+<!-- partials/head.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/styles.css">
+    <% if (typeof styles !== 'undefined') { %>
+        <% styles.forEach(style => { %>
+            <link rel="stylesheet" href="<%= style %>">
+        <% }) %>
+    <% } %>
+    <link rel="icon" type="image/x-icon" href="/images/IMG_5165.png">
+    <title><%= title %></title>
+    <style>
+        table, td {
+            border: none;
+            border-spacing: 7px;
+            display: inline;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="button" style="display: block;"><a href="/login" style="color: #fafafa;">Login</a></button>
+    </div>
+    <div class="header-text">
+        <h3 style="text-align: center;">LeeRoy's best for plants and plant needs!</h3>
+    </div>
+
+    <div class="navbar">
+        <span><a href="/">info</a></span>
+        <span><a href="/product">data</a></span>
+        <span><a href="/checkout">developers</a></span>
+        <span><a href="/login">login</a></span>
+    </div>
+</body>
+</html>
