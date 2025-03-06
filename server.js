@@ -23,7 +23,6 @@ app.get('/login', mainController.getLogin);
 app.get('/product-admin', mainController.getProductAdmin);
 
 // Post Routes
-
 app.post('/addToCart', mainController.addToCart);
 app.post('/removeFromCart', mainController.removeFromCart);
 app.post('/emptyCart', mainController.emptyCart);
