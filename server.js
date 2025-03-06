@@ -1,4 +1,5 @@
 const { createServer } = require('node:http');
+require('dotenv').config(); 
 
 const hostname = '127.0.0.1';
 const port = process.env.port; //azure provided hopefully 
