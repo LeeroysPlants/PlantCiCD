@@ -21,3 +21,8 @@ CREATE TABLE measurement (
 );
 
 INSERT INTO device (type_, name_) VALUES ("devPi", "Pi");
+
+INSERT INTO sensor (name, description, device_id) VALUES ("waterLevel", "water level for reserves", 1); 
+INSERT INTO sensor (name, description, device_id) VALUES ("soilMoisture", "how wet the soil is", 1); 
+INSERT INTO sensor (name, description, device_id) VALUES ("temperature", "temp in F", 1); 
+INSERT INTO sensor (name, description, device_id) VALUES ("humidity", "humidity in the room", 1); 
