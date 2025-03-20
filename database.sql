@@ -1,13 +1,12 @@
 CREATE TABLE device (
     device_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    type_ VARCHAR(10) NOT NULL,
-    name_ VARCHAR(10) NOT NULL,
-    location_ VARCHAR(10)
+    type_ VARCHAR(32) NOT NULL,
+    name_ VARCHAR(32) NOT NULL
 );
 
 CREATE TABLE sensor (
     sensor_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(10) NOT NULL,
+    name VARCHAR(32) NOT NULL,
     description VARCHAR(40),
     device_id BIGINT NOT NULL,
     FOREIGN KEY (device_id) REFERENCES device(device_id)
@@ -15,7 +14,7 @@ CREATE TABLE sensor (
 
 CREATE TABLE measurement (
     meas_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    measurement FLOAT NOT NULL,
+    reading FLOAT NOT NULL,
     time_ DATETIME NOT NULL,
     sensor_id BIGINT NOT NULL,
     FOREIGN KEY (sensor_id) REFERENCES sensor(sensor_id)
