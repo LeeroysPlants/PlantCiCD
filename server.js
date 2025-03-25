@@ -41,7 +41,7 @@ app.post('/productRedirect', function (req, res) {
 //pi routes below
 app.post('/data', piController.receiveData);
 
-app.get('/waterPlantButtonPressed', (req, res) =>{
+app.post('/waterPlantButtonPressed', (req, res) =>{
     waterPlant = true;
     res.send("Plant will be watered shortly!");
   });
