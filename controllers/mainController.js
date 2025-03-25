@@ -44,16 +44,16 @@ const mainController = {
     return res.status(200);
   },
   // Function that fetches all products from the product database to display to a user
-  // async getProduct(req, res) {
-  //   try {
-  //     const products = await userModel.getProducts();
-  //     const user_id = req.cookies.user_id;
-  //     res.render('product', { products, user_id });
-  //   } catch (error) {
-  //     console.error('Error fetching products:', error);
-  //     res.status(500).json({ error: 'Internal Server Error' });
-  //   }
-  // },
+  async getProduct(req, res) {
+    try {
+      const products = await userModel.getProducts();
+      const user_id = req.cookies.user_id;
+      res.render('product', { products, user_id });
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
   // Function that lists all the admin products and logging trail for admin usage
   // async getProductAdmin(req, res) {
   //   try {
