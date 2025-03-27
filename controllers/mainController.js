@@ -17,7 +17,7 @@ const mainController = {
     const cart = await userModel.getCart(user_id);
     console.log(cart);
 
-    res.render('checkout', { cart, user_id });
+    res.render('developers', { cart, user_id });
   },
   // Function that verifies that a user is in the db and if so issues a cookie and logs them in, otherwise returns an unauthorized error
   async verifyUser(req, res) {
@@ -48,7 +48,7 @@ const mainController = {
     try {
       const products = await userModel.getProducts();
       const user_id = req.cookies.user_id;
-      res.render('product', { products, user_id });
+      res.render('data', { products, user_id });
     } catch (error) {
       console.error('Error fetching products:', error);
       res.status(500).json({ error: 'Internal Server Error' });

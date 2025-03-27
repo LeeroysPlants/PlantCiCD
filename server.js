@@ -18,9 +18,9 @@ var waterPlant = false;
 // Get Routes
 
 app.get('/', mainController.getIndex);
-app.get('/product', mainController.getProduct);
+app.get('/data', mainController.getProduct);
 app.get('/home', mainController.getHome);
-app.get('/checkout', mainController.getCheckout);
+app.get('/developers', mainController.getCheckout);
 app.get('/login', mainController.getLogin);
 app.get('/product-admin', mainController.getProductAdmin);
 
