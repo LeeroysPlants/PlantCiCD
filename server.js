@@ -20,21 +20,21 @@ var waterPlant = false;
 app.get('/', mainController.getIndex);
 app.get('/product', mainController.getProduct);
 app.get('/home', mainController.getHome);
-// app.get('/checkout', mainController.getCheckout);
+app.get('/checkout', mainController.getCheckout);
 app.get('/login', mainController.getLogin);
-// app.get('/product-admin', mainController.getProductAdmin);
+app.get('/product-admin', mainController.getProductAdmin);
 
 // Post Routes
 
-// app.post('/addToCart', mainController.addToCart);
-// app.post('/removeFromCart', mainController.removeFromCart);
-// app.post('/emptyCart', mainController.emptyCart);
-// app.post('/showToProducts', mainController.showToProducts);
-// app.post('/hideFromProducts', mainController.hideFromProducts);
-// app.post('/addToProducts', mainController.addToProducts);
+app.post('/addToCart', mainController.addToCart);
+app.post('/removeFromCart', mainController.removeFromCart);
+app.post('/emptyCart', mainController.emptyCart);
+app.post('/showToProducts', mainController.showToProducts);
+app.post('/hideFromProducts', mainController.hideFromProducts);
+app.post('/addToProducts', mainController.addToProducts);
 app.post('/addUser', mainController.addUser);
 app.post('/verifyUser', mainController.verifyUser);
-// app.post('/addQuantity', mainController.addQuantity);
+app.post('/addQuantity', mainController.addQuantity);
 app.post('/productRedirect', function (req, res) {
     res.redirect(303, '/product');
 });
