@@ -33,7 +33,7 @@ const mainController = {
 
       return res.status(200).json({ verified });
     }
-    
+
     return res.status(401).json({error: 'Unauthorized'});
   },
   // Function that adds a user into the database
@@ -55,7 +55,7 @@ const mainController = {
     }
   },
   // Function that lists all the admin products and logging trail for admin usage
-  async getProductAdmin(req, res) { 
+  async getProductAdmin(req, res) {
     try {
       const products = await userModel.getProducts();
       const actions = await userModel.getAdminActions();
@@ -78,7 +78,7 @@ const mainController = {
     const product_price = parseFloat(req.body.product_price);
     const cart_id = req.cookies.user_id; // should always be the same as user_id as they have associated cart
 
-    userModel.addToCart(cart_id, product_id, product_name, product_price);
+  //   userModel.addToCart(cart_id, product_id, product_name, product_price);
   },
   // Function to decrement the number of items in a cart at the checkout page
   async removeFromCart(req, res) {
@@ -131,7 +131,7 @@ const mainController = {
     const image = req.body.image;
 
     const products = userModel.addToProducts(name, price, image);
-  }
+  },
 };
 
 module.exports = mainController;
