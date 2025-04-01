@@ -15,7 +15,7 @@ const mainController = {
   async getDevelopers(req, res) {
     const user_id = req.cookies.user_id;
 
-    res.render('developers', { cart, user_id });
+    res.render('developers', { user_id });
   },
   // Function that verifies that a user is in the db and if so issues a cookie and logs them in, otherwise returns an unauthorized error
   async verifyUser(req, res) {
