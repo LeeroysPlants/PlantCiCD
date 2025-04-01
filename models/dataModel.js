@@ -50,12 +50,7 @@ async function addUser(username, password) {
   }
 }
 
-
-// Product Page Functions
-
-// Checkout Page Functions
-
-// Admin Page Functions
+// Function for admins to show a product that is currently not listed
 
 async function logAction(executor, receiver, action) {
   const client = await pool.connect();
@@ -91,18 +86,6 @@ let users = [
   {userid: 1, username: 'pharris', password: 'password', account_type: 'registered'},
   {userid: 2, username: 'chouston', password: "drowssap", account_type: 'admin'},
 ];
-let products = [
-  {id: 0, description: 'Cat Food', price: 5.99, image: 'images/cat-food.bmp', display: true},
-  {id: 1, description: 'Dog Food', price: 5.99, image: 'images/dog-food.bmp', display: true},
-  {id: 2, description: 'Bird Food', price: 5.99, image: 'images/bird-food.bmp', display: false},
-  {id: 3, description: 'Lizard Food', price: 5.99, image: 'images/lizard-food.bmp', display: true},
-]
-
-let cart = [
-  // {id: 1, description: 'Cat Food', price: 5.99},
-  // {id: 2, description: 'Pet Stuff', price: 5.99},
-  // {id: 3, description: 'Dog Food', price: 5.99},
-]
 
 const dataModel = {
     getData: () => {
