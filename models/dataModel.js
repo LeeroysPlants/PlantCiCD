@@ -4,25 +4,25 @@ const pool = require('../db');
 
 // Function to get all users in the database
 async function getUsers() {
-  const client = await pool.connect();
+  const client = await pool.db_connection;
   try {
-    const result = await client.query('SELECT * FROM users');
+    const result = client.query('SELECT * FROM users');
     console.log(`Here are the users: ${result}`);
     return result.rows;
   } finally {
-    client.release();
+    // client.release();
   }
 }
 
 // Function to verify a user before loggin them in, checks if a user/password combination exists in the database for logging in
 async function verifyUser(username, password) {
-  const client = await pool.connect();
+  const client = await pool.db_connection;
   try {
       const query = {
         text: 'SELECT * FROM users WHERE username = $1 AND password = $2',
         values: [username, password],
       }
-      const result = await client.query(query);
+      const result = client.query(query);
       var acctype = 'failed';
       var id = -1;
       if (result.rows.length == 1){
@@ -36,14 +36,14 @@ async function verifyUser(username, password) {
 }
 
 async function addUser(username, password) {
-  const client = await pool.connect();
+  const client = await pool.db_connection;
   try {
       const query = {
         text: "INSERT INTO users (username, password, account_type) VALUES ($1, $2, $3)",
         values: [username, password, 'registered'],
       };
 
-      const result = await client.query(query);
+      const result = client.query(query);
       return result.rows;
   } finally {
     client.release();
@@ -55,18 +55,18 @@ async function addUser(username, password) {
 
 // Function to display the list of available products to users
 async function getProducts() {
-  const client = await pool.connect();
+  const client = await pool.db_connection;
   try {
-    const result = await client.query('SELECT * FROM products ORDER BY product_id DESC');
+    const result = client.query('SELECT * FROM products ORDER BY product_id DESC');
     return result.rows;
   } finally {
-    client.release();
+    // client.release();
   }
 }
 
 // Function for users to add products on the product page to their cart
 async function addToCart(cart_id, product_id, product_name, product_price) {
-  const client = await pool.connect();
+  const client = await pool.db_connection;
   try {
     const query = {
       text: "SELECT * FROM cartitems WHERE cart_id = $1 AND product_id = $2",
@@ -90,7 +90,7 @@ async function addToCart(cart_id, product_id, product_name, product_price) {
 
       const result = await pool.query(query);
     }
-    
+
   } finally {
     client.release();
   }
@@ -113,7 +113,7 @@ async function getCart(id) {
     // rows.forEach(row => {
     //   product_list.push(row.product_id);
     // })
-    
+
     // const product_query = {
     //   text: "SELECT * FROM products WHERE product_id = ANY($1::integer[])",
     //   values: [product_list]
@@ -121,7 +121,7 @@ async function getCart(id) {
 
     // const products = await client.query(product_query);
     // // console.log(products.rows);
-    
+
     return result.rows;
   } finally {
     client.release();
@@ -173,7 +173,7 @@ async function removeFromCart(cart_id, product_id) {
 	}
 }
 
-async function addQuantity(cart_id, product_id) { 
+async function addQuantity(cart_id, product_id) {
 	const client = await pool.connect();
 	try {
     const query = {
@@ -258,7 +258,7 @@ async function logAction(executor, receiver, action) {
   const client = await pool.connect();
   const date = Date();
   console.log(executor, receiver, action, date);
-  
+
   try {
     const query = {
       text: 'INSERT INTO adminactions (action_executor, action_receiver, action_type, action_time) VALUES ($1, $2, $3, $4)',
@@ -311,16 +311,17 @@ const dataModel = {
 	    return cartProducts;
     },
   };
-module.exports = 
-{ dataModel, 
-  getUsers, 
-  getProducts, 
-  showProduct, 
-  hideProduct, 
-  addToCart, 
-  getCart, 
-  addToProducts, 
-  getAdminActions, 
+module.exports =
+{
+  dataModel,
+  getUsers,
+  getProducts,
+  showProduct,
+  hideProduct,
+  addToCart,
+  getCart,
+  addToProducts,
+  getAdminActions,
   emptyCart,
   verifyUser,
   addUser,

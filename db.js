@@ -1,11 +1,16 @@
-const { Pool } = require('pg');
-
-const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'leeroyspets', // will crash upon switching pages if DB name is changed
-    password: '', // this needs to be clear whenever you push to a branch for security reasons
-    port: 5432,
-});
-
-module.exports = pool;
+const mysql = require('mysql2/promise')
+require('dotenv').config();
+try{
+	console.log("host: " + process.env.DATABASE_HOST); 
+	console.log("user: " + process.env.DATABASE_USER); 
+const connection = mysql.createConnection({
+	host : process.env.DATABASE_HOST,
+	user : process.env.DATABASE_USER,
+	password : process.env.DATABASE_PASSWORD,
+	database : process.env.DATABASE_NAME
+        });
+		exports.db_connection = connection
+	}
+	catch(error){
+		console.error('MySQL Connection Error:', error.message);
+	}

@@ -1,16 +1,16 @@
 CREATE TABLE users (
-    user_id SERIAL PRIMARY KEY, 
-    username VARCHAR(255) NOT NULL, 
-    password VARCHAR(255) NOT NULL, 
+    user_id bigint PRIMARY KEY auto_increment,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     account_type VARCHAR(20) NOT NULL
 );
 
-INSERT INTO users (username, password, account_type) VALUES 
+INSERT INTO users (username, password, account_type) VALUES
     ('pharris', 'password', 'registered'),
     ('chouston', 'drowssap', 'admin');
 
 CREATE TABLE products (
-    product_id SERIAL PRIMARY KEY,
+    product_id bigint PRIMARY KEY auto_increment,
     product_name VARCHAR(50) NOT NULL,
     product_price FLOAT NOT NULL,
     product_image VARCHAR(1000),
@@ -24,9 +24,9 @@ INSERT INTO products (product_name, product_price, product_image, display) VALUE
     ('Lizard Food', 7.99, 'images/lizard-food.bmp', FALSE);
 
 CREATE TABLE cartitems (
-    cart_item_id SERIAL PRIMARY KEY,
-    cart_id INT NOT NULL,
-    product_id INT NOT NULL,
+    cart_item_id bigint PRIMARY KEY auto_increment,
+    cart_id bigint NOT NULL,
+    product_id bigint NOT NULL,
     product_name VARCHAR(50) NOT NULL,
     product_price FLOAT NOT NULL,
     quantity INT NOT NULL,
@@ -35,9 +35,9 @@ CREATE TABLE cartitems (
 );
 
 CREATE TABLE adminactions (
-    action_id SERIAL PRIMARY KEY,
+    action_id bigint PRIMARY KEY auto_increment,
     action_executor INT NOT NULL,
-    action_receiver INT NOT NULL,
+    action_receiver bigint NOT NULL,
     action_type VARCHAR(25) NOT NULL,
     action_time VARCHAR(200) NOT NULL,
     FOREIGN KEY (action_receiver) REFERENCES products(product_id)
