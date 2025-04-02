@@ -6,11 +6,11 @@ const pool = require('../db');
 async function getUsers() {
   const client = await pool.db_connection;
   try {
-    const result = client.query('SELECT * FROM users');
+    const result = client.execute('SELECT * FROM users');
     console.log(`Here are the users: ${result}`);
     return result.rows;
-  } finally {
-    // client.release();
+  } catch (e){
+    console.log(e)
   }
 }
 
@@ -22,7 +22,7 @@ async function verifyUser(username, password) {
         text: 'SELECT * FROM users WHERE username = $1 AND password = $2',
         values: [username, password],
       }
-      const result = client.query(query);
+      const result = client.execute(query);
       var acctype = 'failed';
       var id = -1;
       if (result.rows.length == 1){
@@ -30,8 +30,8 @@ async function verifyUser(username, password) {
         id = result.rows[0].user_id;
       }
       return {acctype, id};
-  } finally {
-    client.release();
+  } catch (e){
+    console.log(e)
   }
 }
 
@@ -43,61 +43,18 @@ async function addUser(username, password) {
         values: [username, password, 'registered'],
       };
 
-      const result = client.query(query);
+      const result = client.execute(query);
       return result.rows;
-  } finally {
-    client.release();
+  } catch (e){
+    console.log()
   }
 }
 
 // Function for admins to show a product that is currently not listed
 
-async function logAction(executor, receiver, action) {
-  const client = await pool.connect();
-  const date = Date();
-  console.log(executor, receiver, action, date);
-
-  try {
-    const query = {
-      text: 'INSERT INTO adminactions (action_executor, action_receiver, action_type, action_time) VALUES ($1, $2, $3, $4)',
-      values: [executor, receiver, action, date],
-    }
-    const result = await client.query(query);
-    return result.rows;
-  } finally {
-    client.release();
-  }
-}
-
-async function getAdminActions() {
-  const client = await pool.connect();
-  try {
-    const query = 'SELECT * FROM adminactions ORDER BY action_id DESC';
-    const result = await client.query(query);
-    return result.rows;
-  } finally {
-    client.release();
-  }
-}
-
-
-// Old in memory model, deprecated and scheduled for removal in a minor version change
-let users = [
-  {userid: 1, username: 'pharris', password: 'password', account_type: 'registered'},
-  {userid: 2, username: 'chouston', password: "drowssap", account_type: 'admin'},
-];
-
-const dataModel = {
-    getData: () => {
-      // Logic to fetch data from a source
-      return 'Hello, LeeRoy!';
-    },
-  };
 module.exports =
 {
-  dataModel,
   getUsers,
-  getAdminActions,
   verifyUser,
   addUser,
 };
