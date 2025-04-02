@@ -1,7 +1,7 @@
 a {
     text-decoration: none;
     color: black;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 
 }
 
@@ -9,7 +9,7 @@ body {
     background-color: #c1e8c9;
     color: black;
     margin: 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .centered-title {
@@ -76,60 +76,11 @@ body {
     color: #d27763;
 }
 
-.price-text {
-    text-align: left;
-}
-
-.product-list {
-    list-style-type: none;
-}
-
-.product-list li:nth-child(even) {
-    background-color:#c7c9ca; 
-    color: #35373b;
-    margin: 10px 0;
-    padding: 15px;
-}
-
-.product-list li:nth-child(even):hover {
-    background-color:#6c6d6d; 
-    color: #fff;
-    margin: 10px 0;
-    padding: 15px;
-}
-
-.product-list li:nth-child(odd) {
-    background-color: #9a9c9e;
-    color: #35373b;
-    margin: 10px 0;
-    padding: 15px;
-}
-
-.product-list li:nth-child(odd):hover {
-    background-color:#6c6d6d; 
-    color: #fff;
-    margin: 10px 0;
-    padding: 15px;
-}
-
-.product-list-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    border-radius: 10px;
-}
-
-.product-text {
-    text-align: right;
-}
-
-
 .column {
     /* width: 25%; */
     padding: 15px; 
     margin-top: 3%;
     /* height: 350px; */
-    background-color: #c7c9ca;
     display: block;
     text-align: center;
     border-radius: 25px;
@@ -166,6 +117,24 @@ body {
 .button:hover{
 	background-color: #5d5f62;
 }
+
+.watering-can {
+    background-image: url('/images/watering-can.png');
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    display: inline;
+    opacity: 0.5;
+}
+.watering-can:hover{
+    opacity: 0.75;
+    }
+
+
 
 .header{
     background-image: url('/images/Leeroy’s Plant Buddy (5).png');
