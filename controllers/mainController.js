@@ -1,5 +1,5 @@
-const {dataModel} = require('../models/dataModel');
-const userModel = require('../models/dataModel');
+const dataModel = require('../models/dataModel');
+// const userModel = require('../models/dataModel');
 
 const mainController = {
   // Function to render the landing page
@@ -11,7 +11,7 @@ const mainController = {
   getHome: (req, res) => {
     res.render('home');
   },
-  // Function to get items in a users cart and then display them at the checkout page
+
   async getDevelopers(req, res) {
     const user_id = req.cookies.user_id;
 
