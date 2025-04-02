@@ -15,8 +15,9 @@
 		</span>
 	  </div>
       <br>
-	  <form method="get" action="waterPlantButtonPressed">
-		<button onclick="submit">Water our plant</button>
+	  <form method="POST" action="waterPlantButtonPressed">
+		<button type="submit">Water our plant</button>
+		<input type="hidden" name="plantId" value="1">
 	</form>
 	  <center>
 	  <div class="index-container">

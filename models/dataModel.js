@@ -1,3 +1,4 @@
+
 const pool = require('../db');
 
 // Login Page Functions
@@ -282,6 +283,32 @@ async function getAdminActions() {
   }
 }
 
+  async function waterPlantButtonPressed(plantId) {
+    const client = await pool.db_connection; 
+    console.log("plant id in model is: " + plantId); 
+try{
+  const query = `UPDATE PlantWatering SET needs_watering = TRUE WHERE plant_id = ?`
+
+  client.query(query, [plantId]); 
+
+  } catch(err){
+    console.error(err); 
+    throw err; 
+  }
+}
+
+  async function doesPiNeedToWaterPlant(plantId){
+    const client = await pool.db_connection; 
+    try{
+      const query = `SELECT needs_watering FROM PlantWatering WHERE plant_id = ?` 
+      const result = client.query(query, [plantId]); 
+      console.log(result); 
+       } catch(err){
+        console.error(err); 
+        throw err; 
+       }
+  }
+
 
 // Old in memory model, deprecated and scheduled for removal in a minor version change
 let users = [
@@ -327,4 +354,6 @@ module.exports =
   addUser,
   removeFromCart,
   addQuantity,
+  waterPlantButtonPressed,
+  doesPiNeedToWaterPlant
 };

@@ -7,6 +7,7 @@ const port = process.env.PORT || 3000;
 app.use(cookieParser());
 app.use(express.static('public'));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); //to process water plant form data for plant id
 
 const mainController = require('./controllers/mainController');
 const piController = require('./controllers/piController');
@@ -14,7 +15,6 @@ const piController = require('./controllers/piController');
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-var waterPlant = false;
 // Get Routes
 
 app.get('/', mainController.getIndex);
@@ -41,16 +41,10 @@ app.post('/productRedirect', function (req, res) {
 //pi routes below
 app.post('/data', piController.receiveData);
 
-app.post('/waterPlantButtonPressed', (req, res) =>{
-    waterPlant = true;
-    res.send("Plant will be watered shortly!");
-  });
-  app.get('/doesPiNeedToWaterPlant', (req, res) => {
-    res.send(waterPlant);
-    if(waterPlant){ //if plant was just watered, set to false so plant won't be watered again on next check
-      waterPlant = false;
-    }
-  });
+app.post('/waterPlantButtonPressed', piController.waterPlantButtonPressed); 
+
+app.get('/doesPiNeedToWaterPlant', piController.checkToWater); 
+ 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
