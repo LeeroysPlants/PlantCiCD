@@ -6,11 +6,24 @@ const pool = require('../db');
 async function getUsers() {
   const client = await pool.db_connection;
   try {
-    const result = client.execute('SELECT * FROM users');
-    console.log(`Here are the users: ${result}`);
-    return result.rows;
+    const [results, fields] = await client.execute('SELECT * FROM users');
+    console.log(`Here are the users: ${results}`);
+    return results;
   } catch (e){
-    console.log(e)
+    console.log(e);
+    throw e;
+  }
+}
+
+// Function to return all the measurement data from the pi
+async function getData() {
+  const client = await pool.db_connection;
+  try {
+    const [results, fields] = await client.execute('Select * from measurement;');
+    return results;
+  } catch (e){
+    console.log(e);
+    throw e;
   }
 }
 
@@ -22,16 +35,17 @@ async function verifyUser(username, password) {
         text: 'SELECT * FROM users WHERE username = $1 AND password = $2',
         values: [username, password],
       }
-      const result = client.execute(query);
+      const [result, fields] = await client.execute(query);
       var acctype = 'failed';
       var id = -1;
       if (result.rows.length == 1){
-        acctype = result.rows[0].account_type;
-        id = result.rows[0].user_id;
+        acctype = result[0].account_type;
+        id = result[0].user_id;
       }
       return {acctype, id};
   } catch (e){
-    console.log(e)
+    console.log(e);
+    throw e;
   }
 }
 
@@ -43,10 +57,11 @@ async function addUser(username, password) {
         values: [username, password, 'registered'],
       };
 
-      const result = client.execute(query);
-      return result.rows;
+      const [results, fields] = await client.execute(query);
+      return results;
   } catch (e){
-    console.log()
+    console.log(e);
+    throw e;
   }
 }
 
@@ -54,6 +69,7 @@ async function addUser(username, password) {
 
 module.exports =
 {
+  getData,
   getUsers,
   verifyUser,
   addUser,
