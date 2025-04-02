@@ -18,9 +18,10 @@ const piController = {
         res.send("Plant will be watered shortly!"); 
 
     },
-    checkToWater: (req, res) => {
-        const waterPlant = dataModel.doesPiNeedToWaterPlant(1); //hardcoded for now, will need to change if multiple plants pop up 
-        res.send(waterPlant); 
+    async checkToWater (req, res){
+        const waterPlant = await dataModel.doesPiNeedToWaterPlant(1); //hardcoded for now, will need to change if multiple plants pop up 
+        console.log("in controller water plant: " + waterPlant); 
+        res.send(waterPlant.toString()); 
     }
 
 }; 

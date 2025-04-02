@@ -300,9 +300,15 @@ try{
   async function doesPiNeedToWaterPlant(plantId){
     const client = await pool.db_connection; 
     try{
-      const query = `SELECT needs_watering FROM PlantWatering WHERE plant_id = ?` 
-      const result = client.query(query, [plantId]); 
-      console.log(result); 
+      const query = `SELECT needs_watering FROM PlantWatering WHERE plant_id = ?`; 
+      const response = await client.query(query, [plantId]); 
+      const data = response[0][0].needs_watering; 
+      if(data == 1){ //resets water plant to false so Pi doesn't water it again next check
+        const resetWaterQuery = 'UPDATE PlantWatering SET needs_watering = FALSE WHERE plant_id = ?'; 
+        await client.query(resetWaterQuery, [plantId]); 
+        console.log("water plant was true, resetting to false"); 
+      }
+      return(data); 
        } catch(err){
         console.error(err); 
         throw err; 
