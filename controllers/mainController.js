@@ -4,7 +4,7 @@ const dataModel = require('../models/dataModel');
 const mainController = {
   // Function to render the landing page
   getIndex: (req, res) => {
-    const data = dataModel.getData();
+    const data = dataModel.dataModel.getData();
     res.render('index', { data });
   },
   // Function to render the home page
