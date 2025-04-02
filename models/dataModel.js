@@ -15,17 +15,13 @@ async function getUsers() {
   }
 }
 
-// Function to return all the measurement data from the pi
-async function getData() {
-  const client = await pool.db_connection;
-  try {
-    const [results, fields] = await client.execute('Select * from measurement;');
-    return results;
-  } catch (e){
-    console.log(e);
-    throw e;
-  }
-}
+const dataModel = {
+  // Function to return all the measurement data from the pi
+  getData: () => {
+    // TODO Logic to fetch data from a source
+    return 'Hello, LeeRoy!';
+  },
+};
 
 // Function to verify a user before loggin them in, checks if a user/password combination exists in the database for logging in
 async function verifyUser(username, password) {
@@ -65,12 +61,58 @@ async function addUser(username, password) {
   }
 }
 
-// Function for admins to show a product that is currently not listed
+async function waterPlantButtonPressed(plantId) {
+  const client = await pool.db_connection;
+  console.log("plant id in model is: " + plantId);
+try{
+const query = `UPDATE PlantWatering SET needs_watering = TRUE WHERE plant_id = ?`
+
+client.execute(query, [plantId]);
+
+} catch(err){
+  console.error(err);
+  throw err;
+}
+}
+
+async function waterPlantButtonPressed(plantId) {
+  const client = await pool.db_connection;
+  console.log("plant id in model is: " + plantId);
+try{
+const query = `UPDATE PlantWatering SET needs_watering = TRUE WHERE plant_id = ?`
+
+client.execute(query, [plantId]);
+
+} catch(err){
+  console.error(err);
+  throw err;
+}
+}
+
+async function doesPiNeedToWaterPlant(plantId){
+  const client = await pool.db_connection;
+  try{
+    const query = `SELECT needs_watering FROM PlantWatering WHERE plant_id = ?`;
+    const response = await client.execute(query, [plantId]);
+    const data = response[0][0].needs_watering;
+    if(data == 1){ //resets water plant to false so Pi doesn't water it again next check
+      const resetWaterQuery = 'UPDATE PlantWatering SET needs_watering = FALSE WHERE plant_id = ?';
+      await client.query(resetWaterQuery, [plantId]);
+      console.log("water plant was true, resetting to false");
+    }
+    return(data);
+     } catch(err){
+      console.error(err);
+      throw err;
+     }
+}
 
 module.exports =
 {
-  getData,
+  dataModel,
   getUsers,
   verifyUser,
   addUser,
+  doesPiNeedToWaterPlant,
+  waterPlantButtonPressed,
 };
