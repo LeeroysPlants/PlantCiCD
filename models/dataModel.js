@@ -62,49 +62,39 @@ async function addUser(username, password) {
   }
 }
 
-  async function waterPlantButtonPressed(plantId) {
-    const client = await pool.db_connection; 
-    console.log("plant id in model is: " + plantId); 
-try{
+async function waterPlantButtonPressed(plantId) {
+  const client = await pool.db_connection;
+  console.log("plant id in model is: " + plantId);
+  try{
   const query = `UPDATE PlantWatering SET needs_watering = TRUE WHERE plant_id = ?`
 
-  client.query(query, [plantId]); 
+  client.query(query, [plantId]);
 
   } catch(err){
-    console.error(err); 
-    throw err; 
+    console.error(err);
+    throw err;
   }
 }
 
 
   async function getSensorData(){
-    const client = await pool.db_connection; 
-    try{
-      const waterLevelQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id =  1 ORDER BY time_'; 
-      const soilMoistureQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id = 2 ORDER BY time_'; 
-      const tempQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id = 3 ORDER BY time_'; 
-      const humidityQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id = 4 ORDER BY time_'; 
-      const data = {
-        waterLevelData: (await client.query(waterLevelQuery))[0], 
-        soilMoistureData: (await client.query(soilMoistureQuery))[0], 
-        tempData: (await client.query(tempQuery))[0],
-        humidityData: (await client.query(humidityQuery))[0]
-      };  
-      return data; 
-    }catch(err){
-      console.errror(err); 
-      throw err; 
-    }
+  const client = await pool.db_connection;
+  try{
+    const waterLevelQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id =  1 ORDER BY time_';
+    const soilMoistureQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id = 2 ORDER BY time_';
+    const tempQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id = 3 ORDER BY time_';
+    const humidityQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id = 4 ORDER BY time_';
+    const data = {
+      waterLevelData: (await client.query(waterLevelQuery))[0],
+      soilMoistureData: (await client.query(soilMoistureQuery))[0],
+      tempData: (await client.query(tempQuery))[0],
+      humidityData: (await client.query(humidityQuery))[0]
+    };
+    return data;
+  }catch(err){
+    console.errror(err);
+    throw err;
   }
-
-
-
-
-
-} catch(err){
-  console.error(err);
-  throw err;
-}
 }
 
 async function doesPiNeedToWaterPlant(plantId){
