@@ -7,7 +7,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
           // Parse data passed from EJS
-          const rawData = <%- JSON.stringify(data) %>;
+          const rawData = <%= JSON.stringify(data) %>;
       
           // Convert date strings to actual Date objects
           function parseData(dataset) {
@@ -82,7 +82,7 @@
 <!-- sample data being displayed at the top of the page in human-readable form: -->
     <!-- <h2> <%=data.waterLevelData[0].reading %>, <%=data.waterLevelData[0].time_ %> </h2> -->
 <!-- all sample data points being displayed at the top of the page; not very readable, but to ensure everything is being read by the page/server correctly -->
-    <!-- <h2> <%= JSON.stringify(data) %> </h2> -->
+     <h2> <%= JSON.stringify(data) %> </h2> 
 <div class="index-container2">
     <span>
         <div class="landing-title">Soil Moisture vs. Time</div>
