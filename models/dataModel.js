@@ -62,20 +62,6 @@ async function addUser(username, password) {
   }
 }
 
-async function waterPlantButtonPressed(plantId) {
-  const client = await pool.db_connection;
-  console.log("plant id in model is: " + plantId);
-try{
-const query = `UPDATE PlantWatering SET needs_watering = TRUE WHERE plant_id = ?`
-
-client.execute(query, [plantId]);
-
-} catch(err){
-  console.error(err);
-  throw err;
-}
-}
-
   async function waterPlantButtonPressed(plantId) {
     const client = await pool.db_connection; 
     console.log("plant id in model is: " + plantId); 
@@ -90,23 +76,7 @@ try{
   }
 }
 
-  async function doesPiNeedToWaterPlant(plantId){
-    const client = await pool.db_connection; 
-    try{
-      const query = `SELECT needs_watering FROM PlantWatering WHERE plant_id = ?`; 
-      const response = await client.query(query, [plantId]); 
-      const data = response[0][0].needs_watering; 
-      if(data == 1){ //resets water plant to false so Pi doesn't water it again next check
-        const resetWaterQuery = 'UPDATE PlantWatering SET needs_watering = FALSE WHERE plant_id = ?'; 
-        await client.query(resetWaterQuery, [plantId]); 
-        console.log("water plant was true, resetting to false"); 
-      }
-      return(data); 
-       } catch(err){
-        console.error(err); 
-        throw err; 
-       }
-  }
+
   async function getSensorData(){
     const client = await pool.db_connection; 
     try{
