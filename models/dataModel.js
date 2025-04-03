@@ -7,13 +7,22 @@ const pool = require('../db');
 async function getUsers() {
   const client = await pool.db_connection;
   try {
-    const result = client.query('SELECT * FROM users');
-    console.log(`Here are the users: ${result}`);
-    return result.rows;
-  } finally {
-    // client.release();
+    const [results, fields] = await client.execute('SELECT * FROM users');
+    console.log(`Here are the users: ${results}`);
+    return results;
+  } catch (e){
+    console.log(e);
+    throw e;
   }
 }
+
+const dataModel = {
+  // Function to return all the measurement data from the pi
+  getData: () => {
+    // TODO Logic to fetch data from a source
+    return 'Hello, LeeRoy!';
+  },
+};
 
 // Function to verify a user before loggin them in, checks if a user/password combination exists in the database for logging in
 async function verifyUser(username, password) {
@@ -23,16 +32,17 @@ async function verifyUser(username, password) {
         text: 'SELECT * FROM users WHERE username = $1 AND password = $2',
         values: [username, password],
       }
-      const result = client.query(query);
+      const [result, fields] = await client.execute(query);
       var acctype = 'failed';
       var id = -1;
       if (result.rows.length == 1){
-        acctype = result.rows[0].account_type;
-        id = result.rows[0].user_id;
+        acctype = result[0].account_type;
+        id = result[0].user_id;
       }
       return {acctype, id};
-  } finally {
-    client.release();
+  } catch (e){
+    console.log(e);
+    throw e;
   }
 }
 
@@ -44,40 +54,11 @@ async function addUser(username, password) {
         values: [username, password, 'registered'],
       };
 
-      const result = client.query(query);
-      return result.rows;
-  } finally {
-    client.release();
-  }
-}
-
-// Function for admins to show a product that is currently not listed
-
-async function logAction(executor, receiver, action) {
-  const client = await pool.connect();
-  const date = Date();
-  console.log(executor, receiver, action, date);
-
-  try {
-    const query = {
-      text: 'INSERT INTO adminactions (action_executor, action_receiver, action_type, action_time) VALUES ($1, $2, $3, $4)',
-      values: [executor, receiver, action, date],
-    }
-    const result = await client.query(query);
-    return result.rows;
-  } finally {
-    client.release();
-  }
-}
-
-async function getAdminActions() {
-  const client = await pool.connect();
-  try {
-    const query = 'SELECT * FROM adminactions ORDER BY action_id DESC';
-    const result = await client.query(query);
-    return result.rows;
-  } finally {
-    client.release();
+      const [results, fields] = await client.execute(query);
+      return results;
+  } catch (e){
+    console.log(e);
+    throw e;
   }
 }
 
@@ -95,23 +76,7 @@ try{
   }
 }
 
-  async function doesPiNeedToWaterPlant(plantId){
-    const client = await pool.db_connection; 
-    try{
-      const query = `SELECT needs_watering FROM PlantWatering WHERE plant_id = ?`; 
-      const response = await client.query(query, [plantId]); 
-      const data = response[0][0].needs_watering; 
-      if(data == 1){ //resets water plant to false so Pi doesn't water it again next check
-        const resetWaterQuery = 'UPDATE PlantWatering SET needs_watering = FALSE WHERE plant_id = ?'; 
-        await client.query(resetWaterQuery, [plantId]); 
-        console.log("water plant was true, resetting to false"); 
-      }
-      return(data); 
-       } catch(err){
-        console.error(err); 
-        throw err; 
-       }
-  }
+
   async function getSensorData(){
     const client = await pool.db_connection; 
     try{
@@ -133,23 +98,37 @@ try{
   }
 
 
-// Old in memory model, deprecated and scheduled for removal in a minor version change
-let users = [
-  {userid: 1, username: 'pharris', password: 'password', account_type: 'registered'},
-  {userid: 2, username: 'chouston', password: "drowssap", account_type: 'admin'},
-];
 
-const dataModel = {
-    getData: () => {
-      // Logic to fetch data from a source
-      return 'Hello, LeeRoy!';
-    },
-  };
+
+
+} catch(err){
+  console.error(err);
+  throw err;
+}
+}
+
+async function doesPiNeedToWaterPlant(plantId){
+  const client = await pool.db_connection;
+  try{
+    const query = `SELECT needs_watering FROM PlantWatering WHERE plant_id = ?`;
+    const response = await client.execute(query, [plantId]);
+    const data = response[0][0].needs_watering;
+    if(data == 1){ //resets water plant to false so Pi doesn't water it again next check
+      const resetWaterQuery = 'UPDATE PlantWatering SET needs_watering = FALSE WHERE plant_id = ?';
+      await client.execute(resetWaterQuery, [plantId]);
+      console.log("water plant was true, resetting to false");
+    }
+    return(data);
+     } catch(err){
+      console.error(err);
+      throw err;
+     }
+}
+
 module.exports =
 {
   dataModel,
   getUsers,
-  getAdminActions,
   verifyUser,
   addUser,
   waterPlantButtonPressed,
