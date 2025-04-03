@@ -1,4 +1,4 @@
-const {dataModel} = require('../models/dataModel');
+const dataModel = require('../models/dataModel');
 const userModel = require('../models/dataModel');
 
 const mainController = {
@@ -45,6 +45,7 @@ const mainController = {
   async getData(req, res) {
     try {
       const user_id = req.cookies.user_id;
+      const data = dataModel.getSensorData(); 
       res.render('data', { user_id });
     } catch (error) {
       console.error('Error fetching products:', error);
