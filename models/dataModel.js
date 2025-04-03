@@ -125,7 +125,6 @@ try{
         tempData: (await client.query(tempQuery))[0],
         humidityData: (await client.query(humidityQuery))[0]
       };  
-      console.log(data); 
       return data; 
     }catch(err){
       console.errror(err); 
