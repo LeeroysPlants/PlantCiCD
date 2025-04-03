@@ -23,7 +23,7 @@
           const humidityData = parseData(rawData.humidityData);
       
           // Define dimensions
-          const width = 800, height = 400, margin = { top: 40, right: 100, bottom: 50, left: 60 };
+          const width = 800, height = 400, margin = { top: 40, right: 150, bottom: 50, left: 60 };
       
           // Create SVG container
           const svg = d3.select("#chart")
@@ -83,11 +83,13 @@
     <!-- <h2> <%=data.waterLevelData[0].reading %>, <%=data.waterLevelData[0].time_ %> </h2> -->
 <!-- all sample data points being displayed at the top of the page; not very readable, but to ensure everything is being read by the page/server correctly -->
 <div class="index-container2">
+  <center>
     <span>
         <div class="landing-title">Soil Moisture vs. Time</div>
-        <div class="landing-text">This chart tracks the soil moisture of our plant. If it falls under [THRESHOLD 1], the plant will automatically water itself. If it's too high above [THRESHOLD 2], the plant will be unable to be watered. If it's in between, feel free to click the "Water" button to water the plant from afar!</div>
+        <div class="landing-text">This chart tracks the soil moisture of our plant. The higher the value is, the drier the soil is. If it's above 100, the plant should automatically water itself. If it's below 60, the plant will be unable to be watered. If it's in between, feel free to click the "Water" button on the Info page to water the plant from afar!</div>
         <!-- "Works", but not fully: <input id="time-slider" type="range" min="2025-01-01" max="2026-01-01" step="5" value="2025-01-01" style="width: 600px; margin-bottom: 10px;"> -->
         <div id="chart"></div>
     </span>
+  </center>
 </div>
 </body>
