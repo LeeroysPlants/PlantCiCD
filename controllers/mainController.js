@@ -46,7 +46,12 @@ const mainController = {
     try {
       const user_id = req.cookies.user_id;
       const data = await dataModel.getSensorData(); 
-      res.render('data', { user_id, data });
+      const recentWaterLevel = data.waterLevelData[data.waterLevelData.length-1].reading;
+      const recentSoilMoisture = data.soilMoistureData[data.soilMoistureData.length-1].reading; 
+      const recentTemp = data.tempData[data.tempData.length-1].reading; 
+      const recentHumidity = data.humidityData[data.humidityData.length-1].reading; 
+      
+      res.render('data', { user_id, data, recentWaterLevel, recentSoilMoisture, recentTemp, recentHumidity });
     } catch (error) {
       console.error('Error fetching products:', error);
       res.status(500).json({ error: 'Internal Server Error' });

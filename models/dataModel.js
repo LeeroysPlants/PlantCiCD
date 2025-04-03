@@ -99,14 +99,6 @@ try{
 
 
 
-
-
-} catch(err){
-  console.error(err);
-  throw err;
-}
-}
-
 async function doesPiNeedToWaterPlant(plantId){
   const client = await pool.db_connection;
   try{
