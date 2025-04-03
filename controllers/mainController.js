@@ -46,7 +46,7 @@ const mainController = {
     try {
       const user_id = req.cookies.user_id;
       const data = await dataModel.getSensorData(); 
-      res.render('data', { user_id });
+      res.render('data', { user_id, data });
     } catch (error) {
       console.error('Error fetching products:', error);
       res.status(500).json({ error: 'Internal Server Error' });
