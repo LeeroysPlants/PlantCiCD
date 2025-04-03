@@ -81,7 +81,7 @@ async function waterPlantButtonPressed(plantId) {
 try{
 const query = `UPDATE PlantWatering SET needs_watering = TRUE WHERE plant_id = ?`
 
-client.execute(query, [plantId]);
+await client.execute(query, [plantId]);
 
 } catch(err){
   console.error(err);
@@ -97,7 +97,7 @@ async function doesPiNeedToWaterPlant(plantId){
     const data = response[0][0].needs_watering;
     if(data == 1){ //resets water plant to false so Pi doesn't water it again next check
       const resetWaterQuery = 'UPDATE PlantWatering SET needs_watering = FALSE WHERE plant_id = ?';
-      await client.query(resetWaterQuery, [plantId]);
+      await client.execute(resetWaterQuery, [plantId]);
       console.log("water plant was true, resetting to false");
     }
     return(data);
