@@ -112,6 +112,25 @@ try{
         throw err; 
        }
   }
+  async function getSensorData(){
+    const client = await pool.db_connection; 
+    try{
+      const waterLevelQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id =  1 ORDER BY time_'; 
+      const soilMoistureQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id = 2 ORDER BY time_'; 
+      const tempQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id = 3 ORDER BY time_'; 
+      const humidityQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id = 4 ORDER BY time_'; 
+      const data = {
+        waterLevelData: (await client.query(waterLevelQuery))[0], 
+        soilMoistureData: (await client.query(soilMoistureQuery))[0], 
+        tempData: (await client.query(tempQuery))[0],
+        humidityData: (await client.query(humidityQuery))[0]
+      };  
+      return data; 
+    }catch(err){
+      console.errror(err); 
+      throw err; 
+    }
+  }
 
 
 // Old in memory model, deprecated and scheduled for removal in a minor version change
@@ -134,5 +153,6 @@ module.exports =
   verifyUser,
   addUser,
   waterPlantButtonPressed,
-  doesPiNeedToWaterPlant
+  doesPiNeedToWaterPlant,
+  getSensorData
 };
