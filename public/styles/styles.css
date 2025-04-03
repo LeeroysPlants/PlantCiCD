@@ -16,6 +16,12 @@ body {
     text-align: center;
 }
 
+.header{
+    border: none;
+    width: 100%;
+    display: flex;
+}
+
 .header-text {
 	padding: 1px;
   	text-align: center;
@@ -57,14 +63,12 @@ body {
     max-height: 40px;
 }
 
-
 .navbar {
     background-color: #73C773;
     text-align: center;
     justify-content: space-evenly;
     display: flex;
-    /* padding-top: 15px; */
-    padding-bottom: 12px;
+    padding-bottom: 0.25%;
 }
 
 .navbar a {
@@ -136,16 +140,6 @@ body {
 
 
 
-.header{
-    background-image: url('/images/Leeroy’s Plant Buddy (5).png');
-    border: none;
-    cursor: pointer;
-    padding: 10;
-    width: 100%;
-    height: 217px;
-    background-size: cover;
-    display: inline-block;
-}
 
 .featured-product {
     background-image: url('../images/plant test.png');
