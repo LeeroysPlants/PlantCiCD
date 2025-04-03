@@ -4,7 +4,7 @@ const userModel = require('../models/dataModel');
 const mainController = {
   // Function to render the landing page
   getIndex: (req, res) => {
-    const data = dataModel.getData();
+    const data = dataModel.dataModel.getData();
     res.render('index', { data });
   },
   // Function to render the home page
@@ -45,7 +45,7 @@ const mainController = {
   async getData(req, res) {
     try {
       const user_id = req.cookies.user_id;
-      const data = dataModel.getSensorData(); 
+      const data = await dataModel.getSensorData(); 
       res.render('data', { user_id });
     } catch (error) {
       console.error('Error fetching products:', error);

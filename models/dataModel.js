@@ -119,14 +119,13 @@ try{
       const soilMoistureQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id = 2 ORDER BY time_'; 
       const tempQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id = 3 ORDER BY time_'; 
       const humidityQuery = 'SELECT reading, time_ FROM measurement WHERE sensor_id = 4 ORDER BY time_'; 
-      //def need to break down mysql response more
-    
       const data = {
-        waterLevel: await client.query(waterLevelQuery), 
-        soilMoistureData: await client.query(soilMoistureQuery), 
-        tempData: await client.query(tempQuery),
-        humidityData: await client.query(humidityQuery) 
-      }; 
+        waterLevelData: (await client.query(waterLevelQuery))[0], 
+        soilMoistureData: (await client.query(soilMoistureQuery))[0], 
+        tempData: (await client.query(tempQuery))[0],
+        humidityData: (await client.query(humidityQuery))[0]
+      };  
+      console.log(data); 
       return data; 
     }catch(err){
       console.errror(err); 
