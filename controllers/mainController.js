@@ -46,6 +46,7 @@ const mainController = {
     try {
       const user_id = req.cookies.user_id;
       const data = await dataModel.getSensorData(); 
+      console.log(JSON.stringify(data)); 
       res.render('data', { user_id, data });
     } catch (error) {
       console.error('Error fetching products:', error);
