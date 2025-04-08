@@ -80,15 +80,30 @@
 </head>
 <body>
 <center><h1 style="font-size: 40px; margin: 1% 0 0 0 ;">Data</h1></center>
-  <h3> RECENT READINGS MAKE THESE LOOK PRETTY PLEASE THANK U MACI</h3>
-  <h3> Water level: <%=recentWaterLevel %></h3>
-  <h3> Soil Moisture: <%=recentSoilMoisture %> </h3>
-  <h3> Temp (F): <%=recentTemp %></h3>
-  <h3> Humidity: <%=recentHumidity %></h3>
+<div class="index-container2">
+  <h2> Recent Sensor Readings:</h2>
+</div>
+<div class="row">
+  <div class="column left" style="width: 38%; margin-left: 8%; padding: 0%; margin-top: 0;">
+    <div class="index-container" style="grid-template-columns: 1fr 1fr; padding: 0%">
+      <h3> Water level: </h3> <p><%=recentWaterLevel %>  waterunits</p>
+      <h3> Soil Moisture:</h3> <p><%=recentSoilMoisture %> units </p>
+      <h3> Temperature (F):</h3> <p><%=recentTemp %> degrees</p>
+      <h3> Humidity:</h3> <p><%=recentHumidity %> units</p>
+    </div>
+  </div>
+  <div class="column right" style="width: 38%; margin-right: 8%;">
+    <div class="index-container2" style=" grid-template-columns: 1fr 1fr;">
+      <button class="watering-can" type="submit" onclick="alert('Our plant will be watered shortly. Thanks!')"></button>
+      <input type="hidden" name="plantId" value="1"> &nbsp;
+      <p style="font-size: medium;">Click to water our plant!</p>
+    </div>
+  </div>
+</div>
 <!-- sample data being displayed at the top of the page in human-readable form: -->
  <h2>  <% data.waterLevelData[0].reading %>,  <% data.waterLevelData[0].time_ %> </h2>
 <!-- all sample data points being displayed at the top of the page; not very readable, but to ensure everything is being read by the page/server correctly -->
-    <center><h1 style="font-size: 40px; margin: 1% 0 0 0 ;">Soil Moisture vs. Time</h1></center>
+    <center><h2>Soil Moisture vs. Time Graph</h2></center>
 
 <div class="index-container2">
     <p style="font-size:large; line-height: 1.5;">This chart tracks the soil moisture of our plant. If it falls under [THRESHOLD 1], the plant will automatically water itself. If it's too high above [THRESHOLD 2], the plant will be unable to be watered. If it's in between, feel free to click the "Water" button to water the plant from afar!</p>
