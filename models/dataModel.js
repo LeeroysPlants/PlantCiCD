@@ -92,7 +92,7 @@ async function waterPlantButtonPressed(plantId) {
     };
     return data;
   }catch(err){
-    console.errror(err);
+    console.log(err);
     throw err;
   }
 }
@@ -110,7 +110,7 @@ async function doesPiNeedToWaterPlant(plantId){
     }
     return(data);
      } catch(err){
-      console.error(err);
+      console.log(err);
       throw err;
      }
 }
