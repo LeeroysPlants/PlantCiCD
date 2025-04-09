@@ -84,16 +84,16 @@
   <h2> Recent Sensor Readings:</h2>
 </div>
 <div class="row">
-  <div class="column left" style="width: 38%; margin-left: 8%; padding: 0%; margin-top: 0;">
-    <div class="index-container" style="grid-template-columns: 1fr 1fr; padding: 0%">
-      <h3> Water level: </h3> <p><%=recentWaterLevel %>  waterunits</p>
+  <div class="column left" style="width: 40%; margin-left: 9%; padding: 0%; margin-top: 0;">
+    <div class="index-container" style="grid-template-columns: 1fr 1fr; padding: 0% ;width: 100%;">
+      <h3> Water level: </h3> <p><%=recentWaterLevel %>  units</p>
       <h3> Soil Moisture:</h3> <p><%=recentSoilMoisture %> units </p>
       <h3> Temperature (F):</h3> <p><%=recentTemp %> degrees</p>
       <h3> Humidity:</h3> <p><%=recentHumidity %> units</p>
     </div>
   </div>
-  <div class="column right" style="width: 38%; margin-right: 8%;">
-    <div class="index-container2" style=" grid-template-columns: 1fr 1fr;">
+  <div class="column right" style="width: 38%; margin-right: 10%;">
+    <div class="index-container2" style="grid-template-columns: 1fr 1fr; width: 100%;">
       <button class="watering-can" type="submit" onclick="alert('Our plant will be watered shortly. Thanks!')"></button>
       <input type="hidden" name="plantId" value="1"> &nbsp;
       <p style="font-size: medium;">Click to water our plant!</p>
