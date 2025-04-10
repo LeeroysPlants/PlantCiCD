@@ -64,7 +64,6 @@ async function addUser(username, password) {
 
 async function waterPlantButtonPressed(plantId) {
   const client = await pool.db_connection;
-  console.log("plant id in model is: " + plantId);
   try{
   const query = `UPDATE PlantWatering SET needs_watering = TRUE WHERE plant_id = ?`
 
@@ -106,7 +105,6 @@ async function doesPiNeedToWaterPlant(plantId){
     if(data == 1){ //resets water plant to false so Pi doesn't water it again next check
       const resetWaterQuery = 'UPDATE PlantWatering SET needs_watering = FALSE WHERE plant_id = ?';
       await client.execute(resetWaterQuery, [plantId]);
-      console.log("water plant was true, resetting to false");
     }
     return(data);
      } catch(err){

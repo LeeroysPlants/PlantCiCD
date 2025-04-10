@@ -1,4 +1,5 @@
 const  dataModel = require("../models/dataModel");
+const mainController = require("../controllers/mainController"); 
 
 const piController = {
 
@@ -15,8 +16,8 @@ const piController = {
     waterPlantButtonPressed: (req, res) => {
         const plantId = req.body.plantId; //include this as part of form submission from button
         dataModel.waterPlantButtonPressed(plantId); 
-        res.send("Plant will be watered shortly!"); 
-
+        res.status(204).send(); 
+        
     },
     async checkToWater (req, res){
         const waterPlant = await dataModel.doesPiNeedToWaterPlant(1); //hardcoded for now, will need to change if multiple plants pop up 

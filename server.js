@@ -33,7 +33,7 @@ app.post('/productRedirect', function (req, res) {
 //pi routes below
 app.post('/data', piController.receiveData);
 
-// app.post('/waterPlantButtonPressed', piController.waterPlantButtonPressed); 
+app.post('/waterPlantButtonPressed', piController.waterPlantButtonPressed); 
 
 app.get('/doesPiNeedToWaterPlant', piController.checkToWater); 
  
