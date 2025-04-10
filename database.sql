@@ -33,4 +33,24 @@ INSERT INTO sensor (name, description, device_id) VALUES ("soilMoisture", "how w
 INSERT INTO sensor (name, description, device_id) VALUES ("temperature", "temp in F", 1); 
 INSERT INTO sensor (name, description, device_id) VALUES ("humidity", "humidity in the room", 1); 
 INSERT INTO PlantWatering(plant_id, needs_watering) VALUES (1, false); 
-
+INSERT INTO measurement (reading, time_, sensor_id) VALUES
+(21, '2025-03-25 14:58:27', 1),
+(228, '2025-03-25 14:58:27', 2),
+(76.46, '2025-03-25 14:58:27', 3),
+(61, '2025-03-25 14:58:27', 4),
+(20, '2025-03-25 15:03:25', 1),
+(200, '2025-03-25 15:03:25', 2),
+(76.82, '2025-03-25 15:03:25', 3),
+(61, '2025-03-25 15:03:25', 4),
+(18, '2025-03-25 15:14:42', 1),
+(190, '2025-03-25 15:14:42', 2),
+(75.74, '2025-03-25 15:14:42', 3),
+(60, '2025-03-25 15:14:42', 4),
+(15, '2025-03-25 15:18:26', 1),
+(180, '2025-03-25 15:18:26', 2),
+(78, '2025-03-25 15:18:26', 3),
+(60, '2025-03-25 15:18:26', 4),
+(23, '2025-03-25 15:20:02', 1),
+(220, '2025-03-25 15:20:02', 2),
+(90, '2025-03-25 15:20:02', 3),
+(59, '2025-03-25 15:20:02', 4);
