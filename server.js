@@ -19,7 +19,7 @@ app.set('views', './views');
 
 app.get('/', mainController.getIndex);
 app.get('/data', mainController.getData);
-app.get('/home', mainController.getHome);
+// app.get('/home', mainController.getHome);
 app.get('/developers', mainController.getDevelopers);
 app.get('/login', mainController.getLogin);
 
