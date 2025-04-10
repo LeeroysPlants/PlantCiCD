@@ -57,7 +57,6 @@
     
         // Parse data from EJS
         const rawData = <%- JSON.stringify(data) %>;
-        const parsedData = JSON.parse(JSON.stringify(rawData)); // double parse for safety
     
         function parseData(dataset) {
           return dataset.map(d => ({
@@ -66,10 +65,10 @@
           }));
         }
     
-        drawLineChart("#chart-water", parseData(parsedData.waterLevelData), "blue", "Water Level");
-        drawLineChart("#chart-soil", parseData(parsedData.soilMoistureData), "green", "Soil Moisture");
-        drawLineChart("#chart-temp", parseData(parsedData.tempData), "red", "Temperature");
-        drawLineChart("#chart-humidity", parseData(parsedData.humidityData), "purple", "Humidity");
+        drawLineChart("#chart-water", parseData(rawData.waterLevelData), "blue", "Water Level");
+        drawLineChart("#chart-soil", parseData(rawData.soilMoistureData), "green", "Soil Moisture");
+        drawLineChart("#chart-temp", parseData(rawData.tempData), "red", "Temperature");
+        drawLineChart("#chart-humidity", parseData(rawData.humidityData), "purple", "Humidity");
       });
     </script>
 </head>
