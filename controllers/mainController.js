@@ -21,6 +21,9 @@ const mainController = {
   async verifyUser(req, res) {
     const username = req.body.username;
     const password = req.body.password;
+    /*
+    FOR POTENTIAL FUTURE TEAM(S):
+    
     const result = await userModel.verifyUser(username, password);
     const verified = result.acctype;
     const id = result.id;
@@ -28,10 +31,9 @@ const mainController = {
       res.cookie('user_id', id, {
         maxAge: 900000, httpOnly: false, SameSite: 'None',
       })
-
       return res.status(200).json({ verified });
     }
-
+    */
     return res.status(401).json({error: 'Unauthorized'});
   },
   // Function that adds a user into the database
