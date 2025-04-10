@@ -215,7 +215,7 @@ body {
 .landing-title{
     font-size: 48px;
     /*float: right;*/
-    margin: 50px 50px 50px 0;
+    margin: 25px 0px 25px 0;
     text-align: center;
     width: 500px;
 } 
@@ -223,7 +223,7 @@ body {
 .landing-text{
     font-size: 24px;
     /*float: right;*/
-    margin: 0 50px 0 0;
+    margin: 0 0px 0 0;
     text-align: center;
     width: 500px;
     word-wrap: break-word;
