@@ -2,9 +2,11 @@
 <%- include('partials/head', { title: 'Data' }) %>
 
 <head>
+  
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
     <script>
+<<<<<<< Updated upstream
         document.addEventListener("DOMContentLoaded", function () {
           // Parse data passed from EJS
           const rawData = <%- JSON.stringify(data) %>;
@@ -27,6 +29,15 @@
       
           // Create SVG container
           const svg = d3.select("#chart")
+=======
+      document.addEventListener("DOMContentLoaded", function () {
+        // Chart-drawing utility
+        function drawLineChart(containerId, data, color, title) {
+          const width = 800, height = 400, margin = { top: 40, right: 60, bottom: 50, left: 60 };
+    
+          d3.select(containerId).html(""); // Clear chart first
+          const svg = d3.select(containerId)
+>>>>>>> Stashed changes
             .append("svg")
             .attr("width", width)
             .attr("height", height)
@@ -44,6 +55,7 @@
           const yScale = d3.scaleLinear()
             .domain([0, d3.max([...waterLevelData, ...soilMoistureData, ...tempData, ...humidityData], d => d.reading)])
             .range([chartHeight, 0]);
+<<<<<<< Updated upstream
       
           // Define line generator
           function createLine(data) {
@@ -77,6 +89,74 @@
       
         });
       </script>
+=======
+    
+          const line = d3.line()
+            .x(d => xScale(d.time))
+            .y(d => yScale(d.reading));
+    
+          chart.append("path")
+            .datum(data)
+            .attr("fill", "none")
+            .attr("stroke", color)
+            .attr("stroke-width", 2)
+            .attr("d", line);
+    
+          chart.append("g")
+            .attr("transform", `translate(0, ${chartHeight})`)
+            .call(d3.axisBottom(xScale).ticks(4));
+    
+          chart.append("g")
+            .call(d3.axisLeft(yScale).ticks(5));
+    
+          svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", 20)
+            .attr("text-anchor", "middle")
+            .style("font-size", "14px")
+            .text(title);
+        }
+    
+        // Helper to filter by time range
+        function filterByRange(data, range) {
+          if (range === "all") return data;
+    
+          const now = new Date();
+          const cutoff = new Date();
+    
+          switch (range) {
+            case "1h": cutoff.setHours(now.getHours() - 1); break;
+            case "1d": cutoff.setDate(now.getDate() - 1); break;
+            case "1w": cutoff.setDate(now.getDate() - 7); break;
+          }
+    
+          return data.filter(d => d.time >= cutoff);
+        }
+    
+        // Parse data from EJS
+        const rawData = <%- JSON.stringify(data) %>;
+    
+        const waterData = rawData.waterLevelData.map(d => ({ time: new Date(d.time_), reading: d.reading }));
+        const soilData = rawData.soilMoistureData.map(d => ({ time: new Date(d.time_), reading: d.reading }));
+        const tempData = rawData.tempData.map(d => ({ time: new Date(d.time_), reading: d.reading }));
+        const humidityData = rawData.humidityData.map(d => ({ time: new Date(d.time_), reading: d.reading }));
+    
+        // Draw all charts initially (with full or default data)
+        drawLineChart("#chart-soil", filterByRange(soilData, "1d"), "green", "Soil Moisture");
+        drawLineChart("#chart-water", waterData, "blue", "Water Level");
+        drawLineChart("#chart-temp", tempData, "red", "Temperature");
+        drawLineChart("#chart-humidity", humidityData, "purple", "Humidity");
+    
+        // Attach dropdown listener for soil moisture only
+        document.getElementById("soilRange").addEventListener("change", function () {
+          const range = this.value;
+          const filtered = filterByRange(soilData, range);
+          drawLineChart("#chart-soil", filtered, "green", "Soil Moisture");
+        });
+      });
+    </script>
+    
+>>>>>>> Stashed changes
 </head>
 <body>
 <!-- sample data being displayed at the top of the page in human-readable form: -->
@@ -85,6 +165,22 @@
 <div class="index-container2">
   <center>
     <span>
+        <div class="landing-title">Soil Moisture vs. Time</div>
+        <div class="landing-text">
+          This chart tracks the soil moisture of our plant...
+        </div>
+        
+        <!-- Dropdown for filtering -->
+        <label for="soilRange">Select Time Range:</label>
+        <select id="soilRange">
+          <option value="1h">Last 1 Hour</option>
+          <option value="1d" selected>Last 1 Day</option>
+          <option value="1w">Last 1 Week</option>
+          <option value="all">All Data</option>
+        </select>
+        
+        <div id="chart-soil"></div>
+      
         <div class="landing-title">Soil Moisture vs. Time</div>
         <div class="landing-text">This chart tracks the soil moisture of our plant. The higher the value is, the drier the soil is. If it's above 100, the plant should automatically water itself. If it's below 60, the plant will be unable to be watered. If it's in between, feel free to click the "Water" button on the Info page to water the plant from afar!</div>
         <!-- "Works", but not fully: <input id="time-slider" type="range" min="2025-01-01" max="2026-01-01" step="5" value="2025-01-01" style="width: 600px; margin-bottom: 10px;"> -->
