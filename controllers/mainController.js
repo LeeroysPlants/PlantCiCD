@@ -3,9 +3,23 @@ const dataModel = require('../models/dataModel');
 
 const mainController = {
   // Function to render the landing page
-  getIndex: (req, res) => {
-    const data = dataModel.dataModel.getData();
-    res.render('index', { data });
+  async getIndex(req, res) {
+    // const data = dataModel.dataModel.getData();
+    // res.render('index', { data });
+    try {
+      const user_id = req.cookies.user_id;
+      const data = await dataModel.getSensorData(); 
+      const recentWaterLevel = data.waterLevelData[data.waterLevelData.length-1].reading;
+      const recentSoilMoisture = data.soilMoistureData[data.soilMoistureData.length-1].reading; 
+      const recentTemp = data.tempData[data.tempData.length-1].reading; 
+      const recentHumidity = data.humidityData[data.humidityData.length-1].reading; 
+      
+      res.render('index', { user_id, data, recentWaterLevel, recentSoilMoisture, recentTemp, recentHumidity });
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+
   },
   // Function to render the home page
   getHome: (req, res) => {

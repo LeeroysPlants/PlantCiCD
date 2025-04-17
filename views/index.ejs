@@ -10,17 +10,46 @@
 				<p style="font-size:large; line-height: 1.5;">This plant, residing in CSI 270T, is of [genus, species]. It's part of our Spring 2025 Senior Software project, but when it grows, perhaps it aspires to be the future mascot for the computer science department. Interested in helping it grow, or just want to monitor its progress? Check out the <a style="font-weight: bold;" href="/data">Data</a> tab on this website!</p>
 			<div class="index-container2" style="grid-template-columns: 1fr 1fr; margin: 0; width: 100%;">
 				<h4>Plant Characteristics:</h4>
-				<p>Here are the characteristics of our plant (it's just a red solo cup full of soil)</p>
+				<p>This is a [plant name], of [genus, species]. It is native to [native enviornment or region].</p>
 			</div>
 			<div class="index-container2" style="grid-template-columns: 1fr 1fr; margin: 0;width: 100%;">
 				<h4>Ideal Conditions:</h4>
-				<p>Here are the ideal conditions of our plant</p>
+				<p>This plant thrives in an environment of [ideal temp] and [ideal humidity]. As a [plant type] plant, it requires watering every [ideal watering frequency] to maintain [ideal soil moisture] and [ideal water level].</p>
+    </div>
 			</div>
 		</div>
 	</div>
+<center>  <h2> Recent Sensor Readings:</h2></center>
+<div class="row">
+  <div class="column left" style="width: 40%; padding: 0%; margin: 0;margin-left: 12%;">
+    <div class="index-container" style="grid-template-columns: 1fr 1fr; padding: 0% ;">
+      <h3 style="margin: 2%;"> Water level: </h3> <p style="margin: 2%;"><%=recentWaterLevel %></p>
+      <h3 style="margin: 2%;"> Soil Moisture:</h3> <p style="margin: 2%;"><%=recentSoilMoisture %> </p>
+      <h3 style="margin: 2%;"> Temperature (F):</h3> <p style="margin: 2%;"><%=recentTemp %> degrees</p>
+      <h3 style="margin: 2%;"> Humidity:</h3> <p style="margin: 2%;"><%=recentHumidity %> </p>
+    </div>
+  </div>
+  <div class="column right" style="width: 30%; margin-right: 14%;padding: 0%; margin-top: 1%;">
+    <div class="index-container2" style="grid-template-columns: 1fr 1fr; width: 100%;padding: 0;margin: 0;">
+      <form action="/waterPlantButtonPressed" method="POST">
+      <button class="watering-can" type="submit" onclick="alert('Our plant will be watered shortly. Thanks!')"></button>
+      <input type="hidden" name="plantId" value="1"> &nbsp;
+    </form>
+      <p style="font-size: medium;">Click to water our plant!</p>
+    
+    </div>
+  </div>
+</div>
+<div class="row">
+	<div class="column">
+		<h2>What do the readings mean?</h2>
+		<center><p style="width: 60%;">[I think it might be helpful to give a little information on what the sensors actually measure. Obviously Temperature is pretty self explanatory but for the others it might be nice to explain a bit.]</p></center>
+	</div>
+</div>
 
 <br><br><br>
 	  <center>
+	  <h2> Other Plants</h2>
 	  <div class="index-container">
 	    <span>
 			<button class="featured-product-small"></button>
