@@ -84,7 +84,7 @@ body {
 .column {
     /* width: 25%; */
     padding: 15px; 
-    margin-top: 3%;
+    margin-top: 2%;
     /* height: 350px; */
     display: block;
     text-align: center;
@@ -207,7 +207,7 @@ body {
 }
 
 .landing-title{
-    font-size: 48px;
+    font-size: 32px;
     /*float: right;*/
     margin: 25px 0px 25px 0;
     text-align: center;
@@ -215,7 +215,7 @@ body {
 } 
 
 .landing-text{
-    font-size: 24px;
+    font-size: 20px;
     /*float: right;*/
     margin: 0 0px 0 0;
     text-align: center;
@@ -239,4 +239,14 @@ body {
     text-align: center;
     width: 250px;
     word-wrap: break-word;
+}
+
+.dev-pics{
+    border: none;
+    padding: 10;
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    display: inline-block;
+
 }
